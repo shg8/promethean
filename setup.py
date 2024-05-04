@@ -24,6 +24,7 @@ setup(
     install_requires=[
         'pyyaml',
         'jsonschema',
-        'paramiko'
+        'paramiko',
+        "regex"
     ],
 )

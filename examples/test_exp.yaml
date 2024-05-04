@@ -1,4 +1,5 @@
 name: Test Experiment
+output: output
 nodes:
   - name: node1
     ssh:
@@ -38,32 +39,29 @@ knobs:
     values: [ 'a', 'b', 'c', 'd', 'e' ]
   - name: bool_knob
     type: bool
-    values: [ true, false ]
-procedure:
-  - name: Experiment 1
-    matrix:
-      - int_knob_2
-      - bool_knob
-    steps:
-      - name: Step 1
-        node:
-          - node1
-          - node2
-        script: "echo \"Step 1\" > {{ file_path }}"
-      - name: Step 2
-        node:
-          - node1
-          - node2
-        file: "{{ file_path }}"
-      - name: Step 2
-        node:
-          - node1
-          - node2
-        file:
-          - alias: alias1
-            path: "{{ file_path }}"
-      - name: Step 3
-        node:
-          - node1
-          - node2
-        script: rm /tmp/test.txt
+matrix:
+  - int_knob_2
+  - bool_knob
+steps:
+  - name: Step 1
+    node:
+      - node1
+      - node2
+    script: "echo \"Step 1\" > {{ file_path }}"
+  - name: Step 2
+    node:
+      - node1
+      - node2
+    file: "{{ file_path }}"
+  - name: Step 2
+    node:
+      - node1
+      - node2
+    file:
+      - alias: alias1
+        path: "{{ file_path }}"
+  - name: Step 3
+    node:
+      - node1
+      - node2
+    script: rm /tmp/test.txt
