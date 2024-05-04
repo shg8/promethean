@@ -15,5 +15,15 @@ setup(
     author='shg8',
     url='https://github.com/shg8/promethean',
     license=license,
-    packages=find_packages(exclude=('tests', 'docs'))
+    packages=find_packages(exclude=('tests', 'docs')),
+    entry_points={
+        'console_scripts': [
+            'promethean=promethean.cli:main',
+        ],
+    },
+    install_requires=[
+        'pyyaml',
+        'jsonschema',
+        'paramiko'
+    ],
 )
